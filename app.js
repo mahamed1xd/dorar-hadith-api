@@ -14,19 +14,22 @@ const config = require('./config/config');
 const errorHandler = require('./middleware/errorHandler');
 const AppError = require('./utils/AppError');
 
-const swaggerUi = require('swagger-ui-express');
-const YAML = require('yamljs');
-const swaggerDocument = YAML.load('api-docs/openapi.yaml');
+// ❌ تم تعطيل الأسطر المسؤولة عن تحميل الـ Docs لحل مشكلة Vercel
+// const swaggerUi = require('swagger-ui-express');
+// const YAML = require('yamljs');
+// const swaggerDocument = YAML.load('api-docs/openapi.yaml');
 
 const app = express();
 
 // Security Middleware
+// ... (بقية الـ Middleware زي ما هي)
 app.use(helmet());
 app.use(cors());
 app.use(timeout(config.expressTimeout));
 app.use(express.json({ limit: config.expressJsonLimit }));
 
 // Rate Limiting
+// ... (بقية الـ Rate Limit)
 app.use(
   rateLimit({
     windowMs: config.rateLimitEach,
@@ -39,6 +42,7 @@ app.use(
 );
 
 // Request Processing Middleware
+// ... (بقية الـ Middleware)
 app.use((req, res, next) => {
   // Handle timeout
   if (req.timedout) {
@@ -74,8 +78,8 @@ app.use('/v1', mohdithSearchRouter);
 app.use('/v1', bookSearchRouter);
 app.use('/v1', dataRouter);
 
-// Serve Swagger UI
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+// ❌ تم تعطيل سطر الـ Serve Swagger UI لحل مشكلة Vercel
+// app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // 404 Handler
 app.all('*', (req, res, next) => {
