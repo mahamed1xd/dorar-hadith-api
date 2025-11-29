@@ -4,9 +4,8 @@ const config = require('./config/config');
 const port = process.env.PORT || config.port;
 
 // Server
-const server = app.listen(port, () =>
-  console.log(`Server is listening at http://localhost:${port}`),
-);
+// تأكد إنك بتصدر الـ 'app' عشان Vercel تعرف تستخدمه
+module.exports = app;
 
 // Handle unhandled rejections
 process.on('unhandledRejection', (err) => {
