@@ -1,6 +1,9 @@
 {
   "name": "hadith-api",
   "version": "1.0.0",
+  "engines": {
+    "node": "24.x" 
+  },
   "description": "hadith api based on dorar.net",
   "main": "server.js",
   "scripts": {
